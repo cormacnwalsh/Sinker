@@ -18,7 +18,7 @@ public class Sinker {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        JOptionPane.showMessageDialog(null,"Welcome to GridShip");//welcome
+        JOptionPane.showMessageDialog(null,"Welcome to GridShip by Darragh");
         
         Grid g = new Grid();
         
