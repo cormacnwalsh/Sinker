@@ -37,10 +37,7 @@ public class Sinker {
             
             if(g.grid[shot]=='V'){
                 JOptionPane.showMessageDialog(null,"You sunk my gridShip TM.\n"
-                        + "griShip is the intellectual property of cormacnwsalsh.\n"
-                        + "The work of darragh-l is subject to a waiver on his moral rights\n"
-                        + "in perpetuity throughout the cosmos.\n"
-                        + "Your statutary rights are unaffected.");
+                        + "BINGO");
                 break;
                 
             }else if(g.grid[shot]=='-'){
