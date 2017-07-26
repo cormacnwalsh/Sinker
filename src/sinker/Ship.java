@@ -12,4 +12,4 @@ package sinker;
 public class Ship {
     char ship1 = 'V';
     char ship2 = 'V';
-}
+}//class
