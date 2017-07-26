@@ -15,6 +15,6 @@ public class Grid {
     public void fillGrid(){
         for(int i = 0; i<grid.length; i++){
             grid[i] = '-';
-        }
-    }
-}
+        }//for loop
+    }//method
+}//class
