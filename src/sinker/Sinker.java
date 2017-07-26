@@ -18,7 +18,7 @@ public class Sinker {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        JOptionPane.showMessageDialog(null,"Welcome to GridShip by Old Man Lally");
+        JOptionPane.showMessageDialog(null,"Welcome to GridShip");
         
         Grid g = new Grid();
         
@@ -29,19 +29,27 @@ public class Sinker {
         g.grid[(int)(Math.random()*6)] = (s.ship1);
         
         char[] play = new char[6];
+        
+        for(int i = 0; i<play.length; i++){
+            play [i] = '-';
+        }
 
         for(int i = 0; i < g.grid.length; i++){
             
-            int shot = Integer.parseInt(JOptionPane.showInputDialog(Arrays.toString(g.grid) + "\n"
+            int shot = Integer.parseInt(JOptionPane.showInputDialog(Arrays.toString(play) + "\n"
             + "Select Target"))-1;
-            
-            if(g.grid[shot]=='V'){
-                JOptionPane.showMessageDialog(null,"You sunk my gridShip TM.\n"
-                        + "BINGO");
-                break;
-                
-            }else if(g.grid[shot]=='-'){
-                g.grid[shot]='X';
+            if(play[shot]=='-'){
+                if(g.grid[shot]=='V'){
+                    JOptionPane.showMessageDialog(null,"You sunk my gridShip TM.\n"
+                            + "BINGO");
+                    break;
+
+                }else if(g.grid[shot]=='-'){
+                    play[shot]='X';
+                }
+            }else if(play[shot]=='X'){
+                JOptionPane.showMessageDialog(null, "Please select an unrevealed space");
+                i--;
             }
         }
         
