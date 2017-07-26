@@ -18,7 +18,10 @@ public class Sinker {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        JOptionPane.showMessageDialog(null,"Welcome to GridShip");
+
+        JOptionPane.showMessageDialog(null,"Welcome to GridShip by Old Man Lally and that weird guy in the corner");
+        JOptionPane.showMessageDialog(null,"Welcome to GridShip by Old Man Lally and that weird guy in the corner");
+
         
         Grid g = new Grid();
         
@@ -58,3 +61,4 @@ public class Sinker {
     
 
 }//class
+
