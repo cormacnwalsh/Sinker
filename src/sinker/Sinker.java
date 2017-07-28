@@ -18,47 +18,58 @@ public class Sinker {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        JOptionPane.showMessageDialog(null,"Welcome to GridShip by Old Man Lally and that weird guy in the corner");
-        JOptionPane.showMessageDialog(null,"Welcome to GridShip by Old Man Lally and that weird guy in the corner");
-
+        int count = 0;
         
-        Grid g = new Grid();
+        JOptionPane.showMessageDialog(null,"Welcome to GridShip");//Start Screen
         
-        g.fillGrid();
+        Grid g = new Grid();//Creates hidden Grid
         
-        Ship s = new Ship();
+        g.fillGrid();//Fills the grid with water
         
-        g.grid[(int)(Math.random()*6)] = (s.ship1);
+        Ship ds = new Ship();//Generates Ship
         
-        char[] play = new char[6];
+        int D = ds.d;
+        int S = ds.s;
+        
+        //g.grid[(int)(Math.random()*6)] = (s.ship1);//Places Ship in random space
+        
+        g.grid[D] = 'd';
+        g.grid[S] = 's';
+        
+        char[] play = new char[6];//Creates visible grid
         
         for(int i = 0; i<play.length; i++){
-            play [i] = '-';
+            play [i] = '-';//Fills visible grid with blank spaces
         }
 
-        for(int i = 0; i < g.grid.length; i++){
+        for(int i = 0; i < g.grid.length; i++){//Game Loop
             
-            int shot = Integer.parseInt(JOptionPane.showInputDialog(Arrays.toString(play) + "\n"
+            int shot = Integer.parseInt(JOptionPane.showInputDialog(Arrays.toString(play) + "\n"//selects target space
             + "Select Target"))-1;
-            if(play[shot]=='-'){
-                if(g.grid[shot]=='V'){
-                    JOptionPane.showMessageDialog(null,"You sunk my gridShip TM.\n"
-                            + "BINGO");
-                    break;
+            
+            if(play[shot]=='-'){//checks oof target space has not been selected before
+                
+                if(g.grid[shot]=='d'||g.grid[shot]=='s'){//if target contains a ship
+                    play[shot]='H';
 
-                }else if(g.grid[shot]=='-'){
+                }else if(g.grid[shot]=='-'){//if target is empty
                     play[shot]='X';
                 }
-            }else if(play[shot]=='X'){
+            }else if(play[shot]=='X'){//if target has been selected before
                 JOptionPane.showMessageDialog(null, "Please select an unrevealed space");
                 i--;
             }
-        }
-        
+            
+            if(play[shot]== 'H'){
+                count++;
+                    }
+                    if(count == 2){
+                    JOptionPane.showMessageDialog(null, "Congrats! Game Over");
+                    break;
+                    }
         
     }//main
     
-
+    }
 }//class
-
+    
