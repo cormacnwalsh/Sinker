@@ -21,7 +21,7 @@ public class Sinker {
         int hitcount = 0;
         int misscount =0;
         
-        JOptionPane.showMessageDialog(null,"Welcome to GridShip");//Start Screen 
+        JOptionPane.showMessageDialog(null,"Welcome to GridShip");//Start Screen
         
         Grid g = new Grid();//Creates hidden Grid
         Grid p = new Grid();//Creates visible grid
