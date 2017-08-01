@@ -11,11 +11,6 @@ package sinker;
  */
 public class Destroyer extends Ship {
     
-    
-    
-    char d = 'd';
-    char s = 's';
-    
     int D;
     int S;
     
