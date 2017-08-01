@@ -18,7 +18,7 @@ public class Sinker {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        boolean check;
+        boolean check = false;
 
         int hitcount = 0;
         int misscount = 0;
@@ -37,47 +37,55 @@ public class Sinker {
         g.grid[cru.U] = 'u';
 
         Destroyer ds = new Destroyer();//Generates Ship
-
-        for (int i = 1; i > 0; i--) {
+        int destSpawn = 2;
+        
+        while (destSpawn==2) {
             ds.placeShip();
-            check = check(ds.D);
+            check = check(g.grid[ds.D]);
             if (check == true) {
-                g.grid[ds.D] = 'd';
+                destSpawn--;
             } else {
-                i = 2;
+                destSpawn = 2;
             }
-            check = check(ds.S);
+            check = check(g.grid[ds.S]);
             if (check == true) {
-                g.grid[ds.S] = 's';
+                destSpawn--;
             } else {
-                i = 2;
+                destSpawn = 2;
             }
-
+            g.grid[ds.D] = 'd';
+            g.grid[ds.S] = 's';
         }
 
         for (int i = 0; i < g.grid.length - 4; i++) {//Game Loop
 
             int shot = Integer.parseInt(JOptionPane.showInputDialog(Arrays.toString(p.grid) + "\n"//selects target space
                     + "Select number: 1 - 16" + "\n" + "\nSelect Target now:"));
-
-            if (shot >= 5 && shot <= 8) {
-                shot = shot + 1;
-            } else if (shot >= 9 && shot <= 12) {
-                shot = shot + 2;
-            } else if (shot >= 13 && shot <= 16) {
-                shot = shot + 3;
-            }
-
-            if (p.grid[shot] == '~') {//checks if target space has not been selected before
-
-                if (g.grid[shot] == 'd' || g.grid[shot] == 's' || g.grid[shot] == 'c' || g.grid[shot] == 'r' || g.grid[shot] == 'u') {//if target contains a ship
-                    p.grid[shot] = 'H';
-
-                } else if (g.grid[shot] == '~') {//if target is empty
-                    p.grid[shot] = 'X';
+            
+            if(shot>=1 && shot<=16){
+                
+                if (shot >= 5 && shot <= 8) {
+                    shot = shot + 1;
+                } else if (shot >= 9 && shot <= 12) {
+                    shot = shot + 2;
+                } else if (shot >= 13 && shot <= 16) {
+                    shot = shot + 3;
                 }
-            } else if (p.grid[shot] == 'X') {//if target has been selected before
-                JOptionPane.showMessageDialog(null, "Please select an unrevealed space");
+
+                if (p.grid[shot] == '~') {//checks if target space has not been selected before
+
+                    if (g.grid[shot] == 'd' || g.grid[shot] == 's' || g.grid[shot] == 'c' || g.grid[shot] == 'r' || g.grid[shot] == 'u') {//if target contains a ship
+                        p.grid[shot] = 'H';
+
+                    } else if (g.grid[shot] == '~') {//if target is empty
+                        p.grid[shot] = 'X';
+                    }
+                } else if (p.grid[shot] == 'X') {//if target has been selected before
+                    JOptionPane.showMessageDialog(null, "Please select an unrevealed space");
+                    i--;
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Please select a valid space");
                 i--;
             }
 
