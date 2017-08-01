@@ -11,12 +11,6 @@ package sinker;
  */
 
 public class Cruiser extends Ship {
-        
-    
-    
-    char c = 'c';
-    char r = 'r';
-    char u = 'u';
     
     int C;
     int R;
@@ -24,7 +18,7 @@ public class Cruiser extends Ship {
     
     public void placeShip(){
         
-       setShipStart();
+        setShipStart();
         setOrient();
         
         int position = getShipStart();
