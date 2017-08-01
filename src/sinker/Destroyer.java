@@ -10,12 +10,7 @@ package sinker;
  * @author Cormac
  */
 public class Destroyer extends Ship {
-    
-    
-    
-    char d = 'd';
-    char s = 's';
-    
+
     int D;
     int S;
     
