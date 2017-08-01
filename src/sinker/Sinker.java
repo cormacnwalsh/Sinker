@@ -68,9 +68,12 @@ public class Sinker {
             
             if(p.grid[shot]== 'H'){
                 hitcount++;
-                    }
+                }
+            else if(p.grid[shot]== 'X'){
+            misscount++;
+            }
                     if(hitcount == 2){
-                    JOptionPane.showMessageDialog(null,Arrays.toString(p.grid)+ "\nCongrats! Game Over");
+                    JOptionPane.showMessageDialog(null,Arrays.toString(p.grid)+ "\nCongrats! Game Over It took you "+(hitcount+misscount)+" shots");
                     break;
                     }
                     

@@ -10,6 +10,6 @@ package sinker;
  * @author Cormac
  */
 public class Ship {
-    char ship1 = 'V';
-    char ship2 = 'V';
+    int d =(int) (Math.random()*5);
+    int s = d+1;
 }//class
