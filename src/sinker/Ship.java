@@ -13,19 +13,13 @@ import java.util.Random;
  */
 
 public class Ship {
-
-    int d =(int) (Math.random()*5);
-    int s = d+1;
-
     
     private Random r = new Random();
     
     private boolean orient;
     
     private int shipStart;
-    private int crusierStart;
-    
-        
+
     public void setOrient(){
         orient = r.nextBoolean();
     }
@@ -42,8 +36,4 @@ public class Ship {
         setShipStart();
         return shipStart;
     }
-    
-    
-    
-
 }//class

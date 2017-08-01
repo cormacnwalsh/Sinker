@@ -9,22 +9,14 @@ package sinker;
  *
  * @author Cormac
  */
+public class Destroyer extends Ship {
 
-public class Cruiser extends Ship {
-        
-    
-    
-    char c = 'c';
-    char r = 'r';
-    char u = 'u';
-    
-    int C;
-    int R;
-    int U;
+    int D;
+    int S;
     
     public void placeShip(){
         
-       setShipStart();
+        setShipStart();
         setOrient();
         
         int position = getShipStart();
@@ -37,15 +29,15 @@ public class Cruiser extends Ship {
         }else if((position>=13)&&(position<=16)){
             position = position + 3;
         }
-        C = position;
+        D = position;
         
         if((horizontal==true)){
-            R = C + 1;
-            U = R + 1;
+            S = D + 1;
         }else if((horizontal==false)){
-            R = C + 5;
-            U = R + 5;
+            S = D + 5;
         }
+        
+        
+    }
     
-}
 }
