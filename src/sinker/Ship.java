@@ -19,12 +19,7 @@ public class Ship {
     private boolean orient;
     
     private int shipStart;
-    
-    public void placeShip(){
-        getOrient();
-        getShipStart();
-    }
-    
+
     public void setOrient(){
         orient = r.nextBoolean();
     }
@@ -41,5 +36,4 @@ public class Ship {
         setShipStart();
         return shipStart;
     }
-    
 }//class
