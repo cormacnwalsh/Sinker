@@ -18,6 +18,8 @@ public class Sinker {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        boolean check;
+
         int hitcount = 0;
         int misscount = 0;
 
@@ -28,18 +30,30 @@ public class Sinker {
         g.fillGrid();//Fills the grid with water
         p.fillGrid();
 
-        Destroyer ds = new Destroyer();//Generates Ship
-        ds.placeShip();
-
         Cruiser cru = new Cruiser();
         cru.placeShip();
-
-        g.grid[ds.D] = 'd';
-        g.grid[ds.S] = 's';
-
         g.grid[cru.C] = 'c';
         g.grid[cru.R] = 'r';
         g.grid[cru.U] = 'u';
+
+        Destroyer ds = new Destroyer();//Generates Ship
+
+        for (int i = 1; i > 0; i--) {
+            ds.placeShip();
+            check = check(ds.D);
+            if (check == true) {
+                g.grid[ds.D] = 'd';
+            } else {
+                i = 2;
+            }
+            check = check(ds.S);
+            if (check == true) {
+                g.grid[ds.S] = 's';
+            } else {
+                i = 2;
+            }
+
+        }
 
         for (int i = 0; i < g.grid.length - 4; i++) {//Game Loop
 
@@ -80,5 +94,16 @@ public class Sinker {
         }
 
     }//main
+
+    public static boolean check(int n) {
+        boolean check;
+        if (n == '~') {
+            check = true;
+        } else {
+            check = false;
+        }
+
+        return check;
+    }
 }//class
 
