@@ -19,67 +19,66 @@ public class Sinker {
      */
     public static void main(String[] args) {
         int hitcount = 0;
-        int misscount =0;
-        
-        JOptionPane.showMessageDialog(null,"Welcome to GridShip");//Start Screen
-        
+        int misscount = 0;
+
+        JOptionPane.showMessageDialog(null, "Welcome to GridShip");//Start Screen
+
         Grid g = new Grid();//Creates hidden Grid
         Grid p = new Grid();//Creates visible grid
         g.fillGrid();//Fills the grid with water
         p.fillGrid();
-        
-        Ship ds = new Ship();//Generates Ship
-        
-        int D = ds.d;
-        int S = ds.s;
-        
-        //g.grid[(int)(Math.random()*6)] = (s.ship1);//Places Ship in random space
-        
-        g.grid[D] = 'd';
-        g.grid[S] = 's';
 
-        for(int i = 0; i < g.grid.length; i++){//Game Loop
-            
+        Destroyer ds = new Destroyer();//Generates Ship
+        ds.placeShip();
+
+        Cruiser cru = new Cruiser();
+        cru.placeShip();
+
+        g.grid[ds.D] = 'd';
+        g.grid[ds.S] = 's';
+
+        g.grid[cru.C] = 'c';
+        g.grid[cru.R] = 'r';
+        g.grid[cru.U] = 'u';
+
+        for (int i = 0; i < g.grid.length - 4; i++) {//Game Loop
+
             int shot = Integer.parseInt(JOptionPane.showInputDialog(Arrays.toString(p.grid) + "\n"//selects target space
-            + "Select number: 1 - 16" + "\n" + "\nSelect Target now:"));
-            
-            if(shot >=5 && shot <=8){
-            shot = shot+1;
-            }
-            else if (shot >=9 && shot <=12){
-                shot = shot+2;
-            }
-            else if (shot >=13 && shot <=16){
-                shot = shot+3;
-            } 
-            
-            if(p.grid[shot]=='~'){//checks if target space has not been selected before
-                
-                if(g.grid[shot]=='d'||g.grid[shot]=='s'){//if target contains a ship
-                    p.grid[shot]='H';
+                    + "Select number: 1 - 16" + "\n" + "\nSelect Target now:"));
 
-                }else if(g.grid[shot]=='~'){//if target is empty
-                    p.grid[shot]='X';
+            if (shot >= 5 && shot <= 8) {
+                shot = shot + 1;
+            } else if (shot >= 9 && shot <= 12) {
+                shot = shot + 2;
+            } else if (shot >= 13 && shot <= 16) {
+                shot = shot + 3;
+            }
+
+            if (p.grid[shot] == '~') {//checks if target space has not been selected before
+
+                if (g.grid[shot] == 'd' || g.grid[shot] == 's' || g.grid[shot] == 'c' || g.grid[shot] == 'r' || g.grid[shot] == 'u') {//if target contains a ship
+                    p.grid[shot] = 'H';
+
+                } else if (g.grid[shot] == '~') {//if target is empty
+                    p.grid[shot] = 'X';
                 }
-            }else if(p.grid[shot]=='X'){//if target has been selected before
+            } else if (p.grid[shot] == 'X') {//if target has been selected before
                 JOptionPane.showMessageDialog(null, "Please select an unrevealed space");
                 i--;
             }
-            
-            if(p.grid[shot]== 'H'){
+
+            if (p.grid[shot] == 'H') {
                 hitcount++;
-                }
-            else if(p.grid[shot]== 'X'){
-            misscount++;
+            } else if (p.grid[shot] == 'X') {
+                misscount++;
             }
-                    if(hitcount == 2){
-                    JOptionPane.showMessageDialog(null,Arrays.toString(p.grid)+ "\nCongrats! Game Over It took you "+(hitcount+misscount)+" shots");
-                    break;
-                    }
-                    
-        
-    }
-    
+            if (hitcount == 5) {
+                JOptionPane.showMessageDialog(null, Arrays.toString(p.grid) + "\nCongrats! Game Over It took you " + (hitcount + misscount) + " shots");
+                break;
+            }
+
+        }
+
     }//main
 }//class
-    
+
