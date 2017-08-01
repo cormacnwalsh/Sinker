@@ -5,15 +5,41 @@
  */
 package sinker;
 
+import java.util.Random;
+
 /**
  *
  * @author Cormac
  */
+
 public class Ship {
-//    char ship1 = 'V';
-//    char ship2 = 'V';
     
-    int d = (int)(Math.random()*5);
-    int s = d + 1;
+    private Random r = new Random();
+    
+    private boolean orient;
+    
+    private int shipStart;
+    
+    public void placeShip(){
+        getOrient();
+        getShipStart();
+    }
+    
+    public void setOrient(){
+        orient = r.nextBoolean();
+    }
+    
+    public boolean getOrient(){
+        return orient;
+    }
+    
+    public void setShipStart(){
+        shipStart = r.nextInt(15) + 1;
+    }
+    
+    public int getShipStart(){
+        setShipStart();
+        return shipStart;
+    }
     
 }//class

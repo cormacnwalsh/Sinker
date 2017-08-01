@@ -28,17 +28,13 @@ public class Sinker {
         g.fillGrid();//Fills the grid with water
         p.fillGrid();
         
-        Ship ds = new Ship();//Generates Ship
-        
-        int D = ds.d;
-        int S = ds.s;
-        
-        //g.grid[(int)(Math.random()*6)] = (s.ship1);//Places Ship in random space
-        
-        g.grid[D] = 'd';
-        g.grid[S] = 's';
+        Destroyer ds = new Destroyer();//Generates Ship
+        ds.placeShip();
+                
+        g.grid[ds.D] = 'd';
+        g.grid[ds.S] = 's';
 
-        for(int i = 0; i < g.grid.length; i++){//Game Loop
+        for(int i = 0; i < g.grid.length-4; i++){//Game Loop
             
             int shot = Integer.parseInt(JOptionPane.showInputDialog(Arrays.toString(p.grid) + "\n"//selects target space
             + "Select number: 1 - 16" + "\n" + "\nSelect Target now:"));
