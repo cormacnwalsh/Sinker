@@ -10,11 +10,14 @@ package sinker;
  * @author Cormac
  */
 public class Grid {
-    char[] grid = new char[6];
-        
-    public void fillGrid(){
-        for(int i = 0; i<grid.length; i++){
-            grid[i] = '-';
+    char[] grid = new char[20];
+
+    public void fillGrid() {
+        for (int i = 0; i < grid.length; i++) {
+            grid[i] = '~';
+            if (i % 5 == 0) {
+                grid[i] = '\n';
+            }//if
         }//for loop
     }//method
 }//class
