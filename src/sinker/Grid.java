@@ -10,6 +10,7 @@ package sinker;
  * @author Cormac
  */
 public class Grid {
+
     char[] grid = new char[20];
 
     public void fillGrid() {
