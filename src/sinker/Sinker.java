@@ -18,7 +18,7 @@ public class Sinker {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        boolean check = false;
+        boolean check;
 
         int hitcount = 0;
         int misscount = 0;
@@ -29,37 +29,42 @@ public class Sinker {
         Grid p = new Grid();//Creates visible grid
         g.fillGrid();//Fills the grid with water
         p.fillGrid();
+        
+        Battleship batl = new Battleship();
+        batl.placeShip();
+        g.grid[batl.B] = 'b';
+        g.grid[batl.A] = 'a';
+        g.grid[batl.T] = 't';
+        g.grid[batl.L] = 'l';
 
         Cruiser cru = new Cruiser();
-        cru.placeShip();
-        g.grid[cru.C] = 'c';
-        g.grid[cru.R] = 'r';
-        g.grid[cru.U] = 'u';
+        boolean cruSpawn = false;
+        
+        while(cruSpawn==false){ 
+            cru.placeShip();
+            if((g.grid[cru.C] == '~')&&(g.grid[cru.R]=='~')&&(g.grid[cru.U]=='~')){
+            g.grid[cru.C] = 'c';
+            g.grid[cru.R] = 'r';
+            g.grid[cru.U] = 'u';
+            cruSpawn = true;
+            }
+        }
 
         Destroyer ds = new Destroyer();//Generates Ship
-        int destSpawn = 2;
+        boolean destSpawn = false;
         
-        while (destSpawn==2) {
+        while(destSpawn==false){
             ds.placeShip();
-            check = check(g.grid[ds.D]);
-            if (check == true) {
-                destSpawn--;
-            } else {
-                destSpawn = 2;
+            if((g.grid[ds.D]=='~')&&(g.grid[ds.S]=='~')){
+                g.grid[ds.D] = 'd';
+                g.grid[ds.S] = 's';
+                destSpawn = true;
             }
-            check = check(g.grid[ds.S]);
-            if (check == true) {
-                destSpawn--;
-            } else {
-                destSpawn = 2;
-            }
-            g.grid[ds.D] = 'd';
-            g.grid[ds.S] = 's';
         }
 
         for (int i = 0; i < g.grid.length - 4; i++) {//Game Loop
 
-            int shot = Integer.parseInt(JOptionPane.showInputDialog(Arrays.toString(p.grid) + "\n"//selects target space
+            int shot = Integer.parseInt(JOptionPane.showInputDialog(Arrays.toString(g.grid) + "\n"//selects target space
                     + "Select number: 1 - 16" + "\n" + "\nSelect Target now:"));
             
             if(shot>=1 && shot<=16){
@@ -102,16 +107,5 @@ public class Sinker {
         }
 
     }//main
-
-    public static boolean check(int n) {
-        boolean check;
-        if (n == '~') {
-            check = true;
-        } else {
-            check = false;
-        }
-
-        return check;
-    }
 }//class
 
