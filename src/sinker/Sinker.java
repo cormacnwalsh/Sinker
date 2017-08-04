@@ -23,6 +23,14 @@ public class Sinker {
         int hitcount = 0;
         int misscount = 0;
 
+        int dshit = 2;
+        int cruhit = 3;
+        int batlhit = 4;
+
+        String ctype = "Cruiser";
+        String btype = "Battle Ship";
+        String dtype = "Destroyer";
+
         JOptionPane.showMessageDialog(null, "Welcome to GridShip");//Start Screen
 
         Grid g = new Grid();//Creates hidden Grid
@@ -66,9 +74,9 @@ public class Sinker {
 
             int shot = Integer.parseInt(JOptionPane.showInputDialog(Arrays.toString(p.grid) + "\n"//selects target space
                     + "Select number: 1 - 16" + "\n" + "\nSelect Target now:"));
-            
-            if(shot>=1 && shot<=16){
-                
+
+            if (shot >= 1 && shot <= 16) {
+
                 if (shot >= 5 && shot <= 8) {
                     shot = shot + 1;
                 } else if (shot >= 9 && shot <= 12) {
@@ -79,26 +87,29 @@ public class Sinker {
 
                 if (p.grid[shot] == '~') {//checks if target space has not been selected before
 
-                    if (g.grid[shot] == 'd' || g.grid[shot] == 's' || g.grid[shot] == 'c' || g.grid[shot] == 'r' || g.grid[shot] == 'u') {//if target contains a ship
+                    if (g.grid[shot] == 'd' || g.grid[shot] == 's') {//if target contains a ship
                         p.grid[shot] = 'H';
-
+                        hitcount++;
+                        dshit--;
+                        sunk(dshit, dtype);
+                    } else if (g.grid[shot] == 'c' || g.grid[shot] == 'r' || g.grid[shot] == 'u') {
+                        p.grid[shot] = 'H';
+                        hitcount++;
+                        cruhit--;
+                        sunk(cruhit, ctype);
                     } else if (g.grid[shot] == '~') {//if target is empty
                         p.grid[shot] = 'X';
+                        misscount++;
+                    } else if (p.grid[shot] == 'X') {//if target has been selected before
+                        JOptionPane.showMessageDialog(null, "Please select an unrevealed space");
+                        i--;
                     }
-                } else if (p.grid[shot] == 'X') {//if target has been selected before
-                    JOptionPane.showMessageDialog(null, "Please select an unrevealed space");
-                    i--;
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Please select a valid space");
                 i--;
             }
 
-            if (p.grid[shot] == 'H') {
-                hitcount++;
-            } else if (p.grid[shot] == 'X') {
-                misscount++;
-            }
             if (hitcount == 5) {
                 JOptionPane.showMessageDialog(null, Arrays.toString(p.grid) + "\nCongrats! Game Over It took you " + (hitcount + misscount) + " shots");
                 break;
@@ -107,5 +118,12 @@ public class Sinker {
         }
 
     }//main
+
+    public static void sunk(int hit, String type) {
+
+        if (hit == 0) {
+            JOptionPane.showMessageDialog(null, "You have sunk an enemy: " + type);
+        }
+    }
 }//class
 
