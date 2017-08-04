@@ -18,7 +18,7 @@ public class Sinker {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        boolean check;
+        int size = 4;
 
         int hitcount = 0;
         int misscount = 0;
@@ -33,10 +33,10 @@ public class Sinker {
 
         JOptionPane.showMessageDialog(null, "Welcome to GridShip");//Start Screen
 
-        Grid g = new Grid();//Creates hidden Grid
-        Grid p = new Grid();//Creates visible grid
-        g.fillGrid();//Fills the grid with water
-        p.fillGrid();
+        Grid g = new Grid(size);//Creates hidden Grid
+        Grid p = new Grid(size);//Creates visible grid
+//        g.fillGrid();//Fills the grid with water
+//        p.fillGrid();
         
         Battleship batl = new Battleship();
         batl.placeShip();
@@ -70,7 +70,7 @@ public class Sinker {
             }
         }
 
-        for (int i = 0; i < g.grid.length - 4; i++) {//Game Loop
+        for (int i = 0; i < g.grid.length - size; i++) {//Game Loop
 
             int shot = Integer.parseInt(JOptionPane.showInputDialog(Arrays.toString(p.grid) + "\n"//selects target space
                     + "Select number: 1 - 16" + "\n" + "\nSelect Target now:"));
