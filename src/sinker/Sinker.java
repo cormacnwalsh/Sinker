@@ -64,7 +64,7 @@ public class Sinker {
 
         for (int i = 0; i < g.grid.length - 4; i++) {//Game Loop
 
-            int shot = Integer.parseInt(JOptionPane.showInputDialog(Arrays.toString(g.grid) + "\n"//selects target space
+            int shot = Integer.parseInt(JOptionPane.showInputDialog(Arrays.toString(p.grid) + "\n"//selects target space
                     + "Select number: 1 - 16" + "\n" + "\nSelect Target now:"));
             
             if(shot>=1 && shot<=16){
