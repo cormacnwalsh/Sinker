@@ -17,13 +17,11 @@ public class Cruiser extends Ship {
 
     public void placeShip() {
 
-        setShipStart();
         setOrient();
 
-        int position = getShipStart();
-        boolean horizontal = getOrient();
-
         for (int i = 1; i > 0; i--) {
+            setOrient();
+            boolean horizontal = getOrient();
             setShipStart();
             C = getShipStart();
 

@@ -37,17 +37,38 @@ public class Sinker {
         Grid p = new Grid();//Creates visible grid
         g.fillGrid();//Fills the grid with water
         p.fillGrid();
+        
+        Battleship batl = new Battleship();
+        batl.placeShip();
+        g.grid[batl.B] = 'b';
+        g.grid[batl.A] = 'a';
+        g.grid[batl.T] = 't';
+        g.grid[batl.L] = 'l';
 
         Cruiser cru = new Cruiser();
-        cru.placeShip();
-        g.grid[cru.C] = 'c';
-        g.grid[cru.R] = 'r';
-        g.grid[cru.U] = 'u';
+        boolean cruSpawn = false;
+        
+        while(cruSpawn==false){ 
+            cru.placeShip();
+            if((g.grid[cru.C] == '~')&&(g.grid[cru.R]=='~')&&(g.grid[cru.U]=='~')){
+            g.grid[cru.C] = 'c';
+            g.grid[cru.R] = 'r';
+            g.grid[cru.U] = 'u';
+            cruSpawn = true;
+            }
+        }
 
         Destroyer ds = new Destroyer();//Generates Ship
-        ds.placeShip();
-        g.grid[ds.D] = 'd';
-        g.grid[ds.S] = 's';
+        boolean destSpawn = false;
+        
+        while(destSpawn==false){
+            ds.placeShip();
+            if((g.grid[ds.D]=='~')&&(g.grid[ds.S]=='~')){
+                g.grid[ds.D] = 'd';
+                g.grid[ds.S] = 's';
+                destSpawn = true;
+            }
+        }
 
         for (int i = 0; i < g.grid.length - 4; i++) {//Game Loop
 
@@ -103,8 +124,6 @@ public class Sinker {
         if (hit == 0) {
             JOptionPane.showMessageDialog(null, "You have sunk an enemy: " + type);
         }
-
     }
-
 }//class
 
