@@ -28,7 +28,7 @@ public class Sinker {
         int batlhit = 4;
 
         String ctype = "Cruiser";
-        String btype = "Battle Ship";
+        String btype = "BattleShip";
         String dtype = "Destroyer";
 
         JOptionPane.showMessageDialog(null, "Welcome to GridShip");//Start Screen
@@ -97,26 +97,34 @@ public class Sinker {
                         hitcount++;
                         cruhit--;
                         sunk(cruhit, ctype);
-                    } else if (g.grid[shot] == '~') {//if target is empty
+                    }
+                        else if (g.grid[shot] == 'b' || g.grid[shot] == 'a' || g.grid[shot] == 't' || g.grid[shot] == 'l'){
+                                p.grid[shot] = 'H';
+                        hitcount++;
+                        batlhit--;
+                        sunk(batlhit, btype);
+                                }
+                     else if (g.grid[shot] == '~') {//if target is empty
                         p.grid[shot] = 'X';
                         misscount++;
+                    
                     } else if (p.grid[shot] == 'X') {//if target has been selected before
                         JOptionPane.showMessageDialog(null, "Please select an unrevealed space");
                         i--;
                     }
                 }
-            } else {
+             else {
                 JOptionPane.showMessageDialog(null, "Please select a valid space");
                 i--;
             }
 
-            if (hitcount == 5) {
+            if (hitcount == 9) {
                 JOptionPane.showMessageDialog(null, Arrays.toString(p.grid) + "\nCongrats! Game Over It took you " + (hitcount + misscount) + " shots");
                 break;
             }
 
         }
-
+        }
     }//main
 
     public static void sunk(int hit, String type) {
@@ -124,6 +132,9 @@ public class Sinker {
         if (hit == 0) {
             JOptionPane.showMessageDialog(null, "You have sunk an enemy: " + type);
         }
+
     }
+    
+
 }//class
 

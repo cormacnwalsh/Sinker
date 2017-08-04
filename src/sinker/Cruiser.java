@@ -11,9 +11,8 @@ package sinker;
  */
 public class Cruiser extends Ship {
 
-    int C;
-    int R;
-    int U;
+    int C,R,U;
+    
 
     public void placeShip() {
 
