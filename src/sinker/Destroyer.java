@@ -11,19 +11,18 @@ package sinker;
  */
 public class Destroyer extends Ship {
 
-    int D;
-    int S;
+    int D,S;
 
     public void placeShip() {
 
-        setOrient();
-
-        boolean horizontal = getOrient();
+        
 
         for (int i = 1; i > 0; i--) {
+            setOrient();
+            boolean horizontal = getOrient();
             setShipStart();
             D = getShipStart();
-
+            
             if (horizontal == true) {
                 if ((D == 4) || (D == 8) || (D == 12) || (D == 16)) {
                     i++;
