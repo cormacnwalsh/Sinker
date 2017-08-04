@@ -11,8 +11,7 @@ package sinker;
  */
 public class Destroyer extends Ship {
 
-    int D;
-    int S;
+    int D,S;
 
     public void placeShip() {
 

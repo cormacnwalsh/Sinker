@@ -11,10 +11,7 @@ package sinker;
  */
 public class Battleship extends Ship {
     
-    int B;
-    int A;
-    int T;
-    int L;
+    int B,A,T,L;
     
     public void placeShip() {
         

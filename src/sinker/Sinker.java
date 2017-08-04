@@ -104,13 +104,16 @@ public class Sinker {
                         JOptionPane.showMessageDialog(null, "Please select an unrevealed space");
                         i--;
                     }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Space has already been selected");
+                    i--;
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Please select a valid space");
                 i--;
             }
 
-            if (hitcount == 5) {
+            if (hitcount == 9) {
                 JOptionPane.showMessageDialog(null, Arrays.toString(p.grid) + "\nCongrats! Game Over It took you " + (hitcount + misscount) + " shots");
                 break;
             }
