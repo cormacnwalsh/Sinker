@@ -18,7 +18,7 @@ public class Sinker {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        boolean check;
+        int size = 4;
 
         int hitcount = 0;
         int misscount = 0;
@@ -33,10 +33,8 @@ public class Sinker {
 
         JOptionPane.showMessageDialog(null, "Welcome to GridShip");//Start Screen
 
-        Grid g = new Grid();//Creates hidden Grid
-        Grid p = new Grid();//Creates visible grid
-        g.fillGrid();//Fills the grid with water
-        p.fillGrid();
+        Grid g = new Grid(size);//Creates hidden Grid
+        Grid p = new Grid(size);//Creates visible grid
         
         Battleship batl = new Battleship();
         batl.placeShip();
@@ -70,20 +68,21 @@ public class Sinker {
             }
         }
 
-        for (int i = 0; i < g.grid.length - 4; i++) {//Game Loop
+        for (int i = 0; i < g.grid.length - size; i++) {//Game Loop
 
             int shot = Integer.parseInt(JOptionPane.showInputDialog(Arrays.toString(p.grid) + "\n"//selects target space
                     + "Select number: 1 - 16" + "\n" + "\nSelect Target now:"));
 
-            if (shot >= 1 && shot <= 16) {
-
-                if (shot >= 5 && shot <= 8) {
-                    shot = shot + 1;
-                } else if (shot >= 9 && shot <= 12) {
-                    shot = shot + 2;
-                } else if (shot >= 13 && shot <= 16) {
-                    shot = shot + 3;
-                }
+            if (shot <= g.grid.length) {
+                double num = shot/(size+0.1);
+                shot = (int) (num+shot);
+//                if (shot >= 5 && shot <= 8) {
+//                    shot = shot + 1;
+//                } else if (shot >= 9 && shot <= 12) {
+//                    shot = shot + 2;
+//                } else if (shot >= 13 && shot <= 16) {
+//                    shot = shot + 3;
+//                }
 
                 if (p.grid[shot] == '~') {//checks if target space has not been selected before
 
