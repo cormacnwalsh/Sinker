@@ -36,4 +36,4 @@ public class Ship {
         return shipStart;
     }
     
-}//class
+}
