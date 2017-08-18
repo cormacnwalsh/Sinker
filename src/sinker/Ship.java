@@ -14,26 +14,26 @@ import java.util.Random;
 
 public class Ship {
     
-    private Random r = new Random();
+    private static Random r = new Random();
     
-    private boolean orient;
+    private static boolean orient;
     
-    private int shipStart;
+    private static int shipStart;
 
-    public void setOrient(){
+    public static void setOrient(){
         orient = r.nextBoolean();
     }
     
-    public boolean getOrient(){
+    public static boolean getOrient(){
         return orient;
     }
     
-    public void setShipStart(){
-        shipStart = r.nextInt(15) + 1;
+    public static void setShipStart(int size){
+        shipStart = r.nextInt(size*size)+1;
     }
     
-    public int getShipStart(){
-        setShipStart();
+    public static int getShipStart(){
         return shipStart;
     }
+    
 }//class
