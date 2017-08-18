@@ -11,6 +11,6 @@ package sinker;
  */
 public class Destroyer extends Ship {
 
-    int dSize = 2;
+    int dSize = 2; //spaces occupies by ship
 
 }

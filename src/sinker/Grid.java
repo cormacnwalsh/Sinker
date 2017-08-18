@@ -16,14 +16,14 @@ public class Grid {
     
     public Grid(int size){
         
-        gridSize = (size*size)+size;
+        gridSize = (size*size)+size; //generates grid as square with an extra column used by computer
         grid = new char[gridSize];
         
         for (int i = 0; i < grid.length; i++) {
             grid[i] = '~';
-            if (i % (size+1) == 0) {
+            if (i % (size+1) == 0) { //makes the grid display in 2 dimensions by putting '\n' into the spare column
                 grid[i] = '\n';
-            }//if
+            }
         }
     }
-}//class
+}

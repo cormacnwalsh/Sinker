@@ -11,6 +11,6 @@ package sinker;
  */
 public class Cruiser extends Ship {
     
-    int cSize = 3;
+    int cSize = 3; //spaces occupies by ship
 
 }

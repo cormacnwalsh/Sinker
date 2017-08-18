@@ -11,6 +11,6 @@ package sinker;
  */
 public class Battleship extends Ship {
 
-    int bSize = 4;
+    int bSize = 4; //spaces occupies by ship
 
 }

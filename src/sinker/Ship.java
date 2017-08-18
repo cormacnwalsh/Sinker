@@ -14,11 +14,11 @@ import java.util.Random;
 
 public class Ship {
     
-    private static Random r = new Random();
+    private static Random r = new Random(); //RNG
     
-    private static boolean orient;
+    private static boolean orient; //true = horizontal
     
-    private static int shipStart;
+    private static int shipStart; //origin space of ship
 
     public static void setOrient(){
         orient = r.nextBoolean();
@@ -29,7 +29,7 @@ public class Ship {
     }
     
     public static void setShipStart(int size){
-        shipStart = r.nextInt(size*size)+1;
+        shipStart = r.nextInt(size*size)+1; //generates number between 1 and gridsize
     }
     
     public static int getShipStart(){
