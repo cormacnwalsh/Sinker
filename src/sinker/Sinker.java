@@ -17,101 +17,68 @@ public class Sinker {
     /**
      * @param args the command line arguments
      */
+    static int gridSize = 5;
+
+    static Grid g = new Grid(gridSize);//Creates hidden Grid
+    static Grid p = new Grid(gridSize);//Creates visible grid
+
+    static Battleship b = new Battleship();
+    static Cruiser c = new Cruiser();
+    static Destroyer d = new Destroyer();//Generates Ship
+
     public static void main(String[] args) {
-        int size = 4;
 
         int hitcount = 0;
         int misscount = 0;
-
-        int dshit = 2;
-        int cruhit = 3;
-        int batlhit = 4;
-
-        String ctype = "Cruiser";
+        
+        int bHit = b.bSize;
+        int cHit = c.cSize;
+        int dHit = d.dSize;
+        
         String btype = "BattleShip";
+        String ctype = "Cruiser";
         String dtype = "Destroyer";
 
         JOptionPane.showMessageDialog(null, "Welcome to GridShip");//Start Screen
 
-        Grid g = new Grid(size);//Creates hidden Grid
-        Grid p = new Grid(size);//Creates visible grid
-        
-        Battleship batl = new Battleship();
-        batl.placeShip();
-        g.grid[batl.B] = 'b';
-        g.grid[batl.A] = 'a';
-        g.grid[batl.T] = 't';
-        g.grid[batl.L] = 'l';
+        spawn(gridSize, b.bSize, 'B');
+        spawn(gridSize, c.cSize, 'C');
+        spawn(gridSize, d.dSize, 'D');
 
-        Cruiser cru = new Cruiser();
-        boolean cruSpawn = false;
-        
-        while(cruSpawn==false){ 
-            cru.placeShip();
-            if((g.grid[cru.C] == '~')&&(g.grid[cru.R]=='~')&&(g.grid[cru.U]=='~')){
-            g.grid[cru.C] = 'c';
-            g.grid[cru.R] = 'r';
-            g.grid[cru.U] = 'u';
-            cruSpawn = true;
-            }
-        }
-
-        Destroyer ds = new Destroyer();//Generates Ship
-        boolean destSpawn = false;
-        
-        while(destSpawn==false){
-            ds.placeShip();
-            if((g.grid[ds.D]=='~')&&(g.grid[ds.S]=='~')){
-                g.grid[ds.D] = 'd';
-                g.grid[ds.S] = 's';
-                destSpawn = true;
-            }
-        }
-
-        for (int i = 0; i < g.grid.length - size; i++) {//Game Loop
+        for (int i = 0; i < g.grid.length - gridSize; i++) {//Game Loop
 
             int shot = Integer.parseInt(JOptionPane.showInputDialog(Arrays.toString(p.grid) + "\n"//selects target space
-                    + "Select number: 1 - 16" + "\n" + "\nSelect Target now:"));
+                    + "Select number: 1 - " + (g.grid.length - gridSize) + "\n" + "\nSelect Target now:"));
 
-            if (shot <= g.grid.length) {
-                double num = shot/(size+0.1);
-                shot = (int) (num+shot);
-//                if (shot >= 5 && shot <= 8) {
-//                    shot = shot + 1;
-//                } else if (shot >= 9 && shot <= 12) {
-//                    shot = shot + 2;
-//                } else if (shot >= 13 && shot <= 16) {
-//                    shot = shot + 3;
-//                }
+            if ((shot <= g.grid.length - gridSize) && (shot > 0)) {
+                shot = transform(shot);
 
                 if (p.grid[shot] == '~') {//checks if target space has not been selected before
 
-                    if (g.grid[shot] == 'd' || g.grid[shot] == 's') {//if target contains a ship
+                    if (g.grid[shot] == 'D') {//if target contains a ship
                         p.grid[shot] = 'H';
                         hitcount++;
-                        dshit--;
-                        sunk(dshit, dtype);
-                    } else if (g.grid[shot] == 'c' || g.grid[shot] == 'r' || g.grid[shot] == 'u') {
+                        dHit--;
+                        sunk(dHit, dtype);
+                    } else if (g.grid[shot] == 'C') {
                         p.grid[shot] = 'H';
                         hitcount++;
-                        cruhit--;
-                        sunk(cruhit, ctype);
-                    }
-                        else if (g.grid[shot] == 'b' || g.grid[shot] == 'a' || g.grid[shot] == 't' || g.grid[shot] == 'l'){
-                                p.grid[shot] = 'H';
+                        cHit--;
+                        sunk(cHit, ctype);
+                    } else if (g.grid[shot] == 'B') {
+                        p.grid[shot] = 'H';
                         hitcount++;
-                        batlhit--;
-                        sunk(batlhit, btype);
-                                }
-                     else if (g.grid[shot] == '~') {//if target is empty
+                        bHit--;
+                        sunk(bHit, btype);
+                    } else if (g.grid[shot] == '~') {//if target is empty
                         p.grid[shot] = 'X';
                         misscount++;
-                    
+
                     } else if (p.grid[shot] == 'X') {//if target has been selected before
                         JOptionPane.showMessageDialog(null, "Please select an unrevealed space");
                         i--;
                     }
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "Space has already been selected");
                     i--;
                 }
@@ -127,6 +94,98 @@ public class Sinker {
         }
     }
 
+    public static void spawn(int gridSize, int shipSize, char shipType) {
+
+        for (int i = 1; i > 0; i--) {
+            Ship.setOrient();
+            boolean horizontal = Ship.getOrient();
+            Ship.setShipStart(gridSize);
+            int origin = Ship.getShipStart();
+
+            if (horizontal == true) {
+                if ((origin % gridSize <= (gridSize + 1) - shipSize) && (origin % gridSize > 0)) {
+                    origin = transform(origin);
+
+                    boolean check = checkHoriz(origin, shipSize);
+                    if (check == true) {
+                        fillHoriz(origin, shipSize, shipType);
+                    } else {
+                        i++;
+                    }
+                } else {
+                    i++;
+                }
+
+            } else if (horizontal == false) {
+                if (origin <= (gridSize * gridSize) - ((shipSize - 1) * gridSize)) {
+                    origin = transform(origin);
+
+                    boolean check = checkVert(origin, shipSize);
+                    if (check == true) {
+                        fillVert(origin, shipSize, shipType);
+                    } else {
+                        i++;
+                    }
+                } else {
+                    i++;
+                }
+            }
+        }
+    }
+
+    public static boolean checkHoriz(int origin, int shipSize) {
+        boolean check = false;
+
+        while (shipSize > 0) {
+            if (g.grid[origin] == '~') {
+                check = true;
+                origin++;
+                shipSize--;
+            } else {
+                check = false;
+                break;
+            }
+        }
+        return check;
+    }
+
+    public static void fillHoriz(int origin, int shipSize, char shipType) {
+        if (shipSize > 0) {
+            g.grid[origin] = shipType;
+            fillHoriz(origin + 1, shipSize - 1, shipType);
+        }
+    }
+
+    public static boolean checkVert(int origin, int shipSize) {
+        boolean check = false;
+
+        while (shipSize > 0) {
+            if (g.grid[origin] == '~') {
+                check = true;
+                origin = origin + (gridSize + 1);
+                shipSize--;
+            } else {
+                check = false;
+                break;
+            }
+        }
+        return check;
+    }
+
+    public static void fillVert(int origin, int shipSize, char shipType) {
+        if (shipSize > 0) {
+            g.grid[origin] = shipType;
+            fillVert(origin + (gridSize + 1), shipSize - 1, shipType);
+        }
+    }
+    
+    public static int transform(int num){        
+        double offset = num / (gridSize + 0.1);
+        num = (int) (offset + num);
+        
+        return num;
+    }
+    
     public static void sunk(int hit, String type) {
 
         if (hit == 0) {
