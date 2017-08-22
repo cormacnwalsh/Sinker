@@ -13,16 +13,16 @@ import javax.swing.JOptionPane;
  */
 public class SinkerGame {
 
-    static int gridSize = 5;
+    private int gridSize = 5;
 
-    static Grid g = new Grid(gridSize);//Creates hidden Grid
-    static Grid p = new Grid(gridSize);//Creates visible grid
+    Grid g = new Grid(gridSize);//Creates hidden Grid
+    Grid p = new Grid(gridSize);//Creates visible grid
 
-    static Battleship b = new Battleship();
-    static Cruiser c = new Cruiser();
-    static Destroyer d = new Destroyer();//Generates Ship
+    Battleship b = new Battleship();
+    Cruiser c = new Cruiser();
+    Destroyer d = new Destroyer();//Generates Ship
 
-    public static void play() {
+    public void play() {
 
         int hitcount = 0;
         int misscount = 0;
@@ -90,7 +90,7 @@ public class SinkerGame {
         }
     }
 
-    private static void spawn(int gridSize, int shipSize, char shipType) {
+    private void spawn(int gridSize, int shipSize, char shipType) {
 
         for (int i = 1; i > 0; i--) {
             Ship.setOrient();
@@ -129,7 +129,7 @@ public class SinkerGame {
         }
     }
 
-    private static boolean checkHoriz(int origin, int shipSize) {
+    private boolean checkHoriz(int origin, int shipSize) {
         boolean check = false;
 
         while (shipSize > 0) {
@@ -145,14 +145,14 @@ public class SinkerGame {
         return check;
     }
 
-    private static void fillHoriz(int origin, int shipSize, char shipType) {
+    private void fillHoriz(int origin, int shipSize, char shipType) {
         if (shipSize > 0) {
             g.grid[origin] = shipType;
             fillHoriz(origin + 1, shipSize - 1, shipType);
         }
     }
 
-    private static boolean checkVert(int origin, int shipSize) {
+    private boolean checkVert(int origin, int shipSize) {
         boolean check = false;
 
         while (shipSize > 0) {
@@ -168,21 +168,21 @@ public class SinkerGame {
         return check;
     }
 
-    private static void fillVert(int origin, int shipSize, char shipType) {
+    private void fillVert(int origin, int shipSize, char shipType) {
         if (shipSize > 0) {
             g.grid[origin] = shipType;
             fillVert(origin + (gridSize + 1), shipSize - 1, shipType);
         }
     }
     
-    private static int transform(int num){        
+    private int transform(int num){        
         double offset = num / (gridSize + 0.1);
         num = (int) (offset + num);
         
         return num;
     }
     
-    private static void sunk(int hit, String type) {
+    private void sunk(int hit, String type) {
 
         if (hit == 0) {
             JOptionPane.showMessageDialog(null, "You have sunk an enemy: " + type);
