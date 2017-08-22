@@ -35,7 +35,8 @@ public class SinkerGame {
         String ctype = "Cruiser";
         String dtype = "Destroyer";
 
-        JOptionPane.showMessageDialog(null, "Welcome to GridShip");//Start Screen
+        JOptionPane.showMessageDialog(null, "Welcome to GridShip\n"
+                                          + "by Cormac & Darragh");//Start Screen
 
         spawn(gridSize, b.bSize, 'B');
         spawn(gridSize, c.cSize, 'C');
