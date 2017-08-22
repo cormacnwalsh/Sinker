@@ -31,7 +31,7 @@ public class SinkerGame {
         int cHit = c.cSize;
         int dHit = d.dSize;
         
-        String btype = "BattleShit";
+        String btype = "BattleShip";
         String ctype = "Cruiser";
         String dtype = "Destroyer";
 
