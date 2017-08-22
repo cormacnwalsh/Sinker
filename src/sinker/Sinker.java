@@ -94,7 +94,7 @@ public class Sinker {
         }
     }
 
-    public static void spawn(int gridSize, int shipSize, char shipType) {
+    private static void spawn(int gridSize, int shipSize, char shipType) {
 
         for (int i = 1; i > 0; i--) {
             Ship.setOrient();
@@ -133,7 +133,7 @@ public class Sinker {
         }
     }
 
-    public static boolean checkHoriz(int origin, int shipSize) {
+    private static boolean checkHoriz(int origin, int shipSize) {
         boolean check = false;
 
         while (shipSize > 0) {
@@ -149,14 +149,14 @@ public class Sinker {
         return check;
     }
 
-    public static void fillHoriz(int origin, int shipSize, char shipType) {
+    private static void fillHoriz(int origin, int shipSize, char shipType) {
         if (shipSize > 0) {
             g.grid[origin] = shipType;
             fillHoriz(origin + 1, shipSize - 1, shipType);
         }
     }
 
-    public static boolean checkVert(int origin, int shipSize) {
+    private static boolean checkVert(int origin, int shipSize) {
         boolean check = false;
 
         while (shipSize > 0) {
@@ -172,21 +172,21 @@ public class Sinker {
         return check;
     }
 
-    public static void fillVert(int origin, int shipSize, char shipType) {
+    private static void fillVert(int origin, int shipSize, char shipType) {
         if (shipSize > 0) {
             g.grid[origin] = shipType;
             fillVert(origin + (gridSize + 1), shipSize - 1, shipType);
         }
     }
     
-    public static int transform(int num){        
+    private static int transform(int num){        
         double offset = num / (gridSize + 0.1);
         num = (int) (offset + num);
         
         return num;
     }
     
-    public static void sunk(int hit, String type) {
+    private static void sunk(int hit, String type) {
 
         if (hit == 0) {
             JOptionPane.showMessageDialog(null, "You have sunk an enemy: " + type);
