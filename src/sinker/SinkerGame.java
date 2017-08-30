@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class SinkerGame {
 
-    public static int gridSize = 5;
+    public static int gridSize = 4;
 
     public static Grid g = new Grid(gridSize);//Creates hidden Grid
     public static Grid p = new Grid(gridSize);//Creates visible grid
@@ -38,18 +38,18 @@ public class SinkerGame {
         JOptionPane.showMessageDialog(null, "Welcome to GridShip\n"
                                           + "by Cormac & Darragh");//Start Screen
 
-        boolean bOrient = b.checkOrient(gridSize, b.bSize);
-        b.spawn(bOrient, b.bSize, 'B');
+//        boolean bOrient = b.check(gridSize, b.bSize);
+        b.spawn(gridSize, b.bSize, 'B');
         
-        c.checkOrient(gridSize, c.cSize);
-        c.spawn(bOrient, c.cSize, 'C');
+//        boolean cOrient = c.check(gridSize, c.cSize);
+//        c.spawn(gridSize, c.cSize, 'C');
         
-        d.checkOrient(gridSize, d.dSize);
-        d.spawn(bOrient, d.dSize, 'D');
+//        boolean dOrient = d.check(gridSize, d.dSize);
+//        d.spawn(gridSize, d.dSize, 'D');
         
         for (int i = 0; i < g.grid.length - gridSize; i++) {//Game Loop
 
-            int shot = Integer.parseInt(JOptionPane.showInputDialog(Arrays.toString(p.grid) + "\n"//selects target space
+            int shot = Integer.parseInt(JOptionPane.showInputDialog(Arrays.toString(g.grid) + "\n"//selects target space
                     + "Select number: 1 - " + (g.grid.length - gridSize) + "\n" + "\nSelect Target now:"));
 
             if ((shot <= g.grid.length - gridSize) && (shot > 0)) {

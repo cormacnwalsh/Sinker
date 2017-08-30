@@ -14,8 +14,6 @@ import java.util.Random;
 
 public class Ship {
     
-    ;
-    
     private Random r = new Random(); //RNG
     
     private boolean orient; //true = horizontal
@@ -38,7 +36,13 @@ public class Ship {
         return shipStart;
     }
     
-    public boolean checkOrient(int gridSize, int shipSize){
+    public void spawn(int gridSize, int shipSize, char shipType){
+
+        boolean orient = check(shipStart, gridSize, shipSize);
+        fill(shipStart, orient, shipSize, shipType);
+    }
+    
+    public boolean check(int origin, int gridSize, int shipSize){
         
         boolean orient = false;
         
@@ -46,7 +50,7 @@ public class Ship {
             setOrient();
             boolean horizontal = getOrient();
             setShipStart(gridSize);
-            int origin = getShipStart();
+            origin = getShipStart();
             
             if (horizontal == true) {
                 if ((origin % gridSize <= (gridSize + 1) - shipSize) && (origin % gridSize > 0)) {
@@ -66,31 +70,31 @@ public class Ship {
         return orient;
     }
     
-    public void spawn(boolean orient, int shipSize, char shipType) {
-        int origin = getShipStart();
+    public void fill(int shipStart, boolean orient, int shipSize, char shipType) {
+
         if(orient == true){
-            fillHoriz(origin, shipSize, shipType);
+            fillHoriz(shipStart, shipSize, shipType);
         }else{
-            fillVert(origin, shipSize, shipType);
+            fillVert(shipStart, shipSize, shipType);
         }
         
     }
     
-    private boolean checkHoriz(int origin, int shipSize) {
-        boolean check = false;
-        
-        while (shipSize > 0) {
-            if (SinkerGame.g.grid[origin] == '~') {
-                check = true;
-                origin++;
-                shipSize--;
-            } else {
-                check = false;
-                break;
-            }
-        }
-        return check;
-    }
+//    private boolean checkHoriz(int origin, int shipSize) {
+//        boolean check = false;
+//        
+//        while (shipSize > 0) {
+//            if (SinkerGame.g.grid[origin] == '~') {
+//                check = true;
+//                origin++;
+//                shipSize--;
+//            } else {
+//                check = false;
+//                break;
+//            }
+//        }
+//        return check;
+//    }
 
     private void fillHoriz(int origin, int shipSize, char shipType) {
         if (shipSize > 0) {
@@ -99,21 +103,21 @@ public class Ship {
         }
     }
 
-    private boolean checkVert(int origin, int shipSize) {
-        boolean check = false;
-
-        while (shipSize > 0) {
-            if (SinkerGame.g.grid[origin] == '~') {
-                check = true;
-                origin = origin + (SinkerGame.gridSize + 1);
-                shipSize--;
-            } else {
-                check = false;
-                break;
-            }
-        }
-        return check;
-    }
+//    private boolean checkVert(int origin, int shipSize) {
+//        boolean check = false;
+//
+//        while (shipSize > 0) {
+//            if (SinkerGame.g.grid[origin] == '~') {
+//                check = true;
+//                origin = origin + (SinkerGame.gridSize + 1);
+//                shipSize--;
+//            } else {
+//                check = false;
+//                break;
+//            }
+//        }
+//        return check;
+//    }
 
     private void fillVert(int origin, int shipSize, char shipType) {
         if (shipSize > 0) {
