@@ -5,6 +5,9 @@
  */
 package sinker;
 
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Cormac
@@ -27,19 +30,11 @@ public class Sinker {
 
         int hitcount = 0; //tracks hits
         int misscount = 0; //tracks misses
-<<<<<<< HEAD
         
         int bHit = b.bSize; //tracks ship hitpoints
         int cHit = c.cSize;
         int dHit = d.dSize;
         
-=======
-        
-        int bHit = b.bSize; //tracks ship hitpoints
-        int cHit = c.cSize;
-        int dHit = d.dSize;
-        
->>>>>>> parent of 611c20f... Merge origin/Darragh
         String btype = "BattleShip"; //String for sink message
         String ctype = "Cruiser";
         String dtype = "Destroyer";
